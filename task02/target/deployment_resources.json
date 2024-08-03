@@ -1,0 +1,36 @@
+{
+  "hello_world" : {
+    "name" : "hello_world",
+    "lambda_path" : "C:\\cursoserveless\\cursoaws\\task02",
+    "version" : "1.0.0",
+    "func_name" : "com.task02.HelloWorld",
+    "deployment_package" : "task02-1.0.0.jar",
+    "resource_type" : "lambda",
+    "runtime" : "java17",
+    "architectures" : [ "arm64" ],
+    "iam_role_name" : "hello_world-role",
+    "memory" : 1024,
+    "timeout" : 300,
+    "subnet_ids" : [ ],
+    "security_group_ids" : [ ],
+    "dependencies" : [ ],
+    "event_sources" : [ ],
+    "env_variables" : { },
+    "publish_version" : false,
+    "layers" : [ "sdk-layer" ],
+    "logs_expiration" : "${logs_expiration}",
+    "snap_start" : "None",
+    "url_config" : {
+      "auth_type" : "NONE",
+      "invoke_mode" : "BUFFERED"
+    }
+  },
+  "sdk-layer" : {
+    "name" : "sdk-layer",
+    "runtimes" : [ "java17" ],
+    "resource_type" : "lambda_layer",
+    "deployment_package" : "sdk-layer-assembly.zip",
+    "libraries" : [ "jsrc/main/java/com/task02/lib/commons-lang3-3.14.0.jar", "jsrc/main/java/com/task02/lib/gson-2.10.1.jar" ],
+    "architectures" : [ "arm64" ]
+  }
+}
