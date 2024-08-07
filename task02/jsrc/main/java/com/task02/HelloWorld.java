@@ -33,7 +33,7 @@ import java.util.function.Function;
 
 @LambdaLayer(
 		layerName = "sdk-layer",
-		libraries = {"lib/commons-lang3-3.14.0.jar", "lib/gson-2.10.1.jar"},
+		libraries = {"jsrc/main/java/com/task02/lib/commons-lang3-3.14.0.jar", "jsrc/main/java/com/task02/lib/gson-2.10.1.jar"},
 		runtime = DeploymentRuntime.JAVA17,
 		architectures = {Architecture.ARM64},
 		artifactExtension = ArtifactExtension.ZIP
