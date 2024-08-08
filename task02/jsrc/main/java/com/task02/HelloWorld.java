@@ -7,10 +7,8 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayV2HTTPResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.syndicate.deployment.annotations.lambda.LambdaHandler;
-import com.syndicate.deployment.annotations.lambda.LambdaLayer;
 import com.syndicate.deployment.annotations.lambda.LambdaUrlConfig;
 import com.syndicate.deployment.model.Architecture;
-import com.syndicate.deployment.model.ArtifactExtension;
 import com.syndicate.deployment.model.DeploymentRuntime;
 import com.syndicate.deployment.model.RetentionSetting;
 import com.syndicate.deployment.model.lambda.url.AuthType;
@@ -26,18 +24,10 @@ import java.util.function.Function;
 	roleName = "hello_world-role",
 	isPublishVersion = false,
 	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED,
-	layers = {"sdk-layer"},
 	runtime = DeploymentRuntime.JAVA17,
 	architecture = Architecture.ARM64
 )
 
-@LambdaLayer(
-		layerName = "sdk-layer",
-		libraries = {"jsrc/main/java/com/task02/lib/commons-lang3-3.14.0.jar", "jsrc/main/java/com/task02/lib/gson-2.10.1.jar"},
-		runtime = DeploymentRuntime.JAVA17,
-		architectures = {Architecture.ARM64},
-		artifactExtension = ArtifactExtension.ZIP
-)
 @LambdaUrlConfig(
 		authType = AuthType.NONE,
 		invokeMode = InvokeMode.BUFFERED

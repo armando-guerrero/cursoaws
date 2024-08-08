@@ -17,20 +17,11 @@
     "event_sources" : [ ],
     "env_variables" : { },
     "publish_version" : false,
-    "layers" : [ "sdk-layer" ],
     "logs_expiration" : "${logs_expiration}",
     "snap_start" : "None",
     "url_config" : {
       "auth_type" : "NONE",
       "invoke_mode" : "BUFFERED"
     }
-  },
-  "sdk-layer" : {
-    "name" : "sdk-layer",
-    "runtimes" : [ "java17" ],
-    "resource_type" : "lambda_layer",
-    "deployment_package" : "sdk-layer-assembly.zip",
-    "libraries" : [ "jsrc/main/java/com/task02/lib/commons-lang3-3.14.0.jar", "jsrc/main/java/com/task02/lib/gson-2.10.1.jar" ],
-    "architectures" : [ "arm64" ]
   }
 }
