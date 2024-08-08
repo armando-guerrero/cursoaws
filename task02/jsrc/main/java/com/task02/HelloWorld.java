@@ -39,7 +39,7 @@ public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
 	private static final int SC_OK = 200;
 	private static final int SC_NOT_FOUND = 404;
     private final ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
-	private final Map<String, String> responseHeaders = Map.of("Content-Type", "application/json");
+	private final Map<String, String> responseHeaders = Map.of("Content-Type", "application/json", "statusCode", "200");
 	private final Map<HelloWorld.RouteKey, Function<APIGatewayV2HTTPEvent, APIGatewayV2HTTPResponse>> routeHandlers = Map.of(
 			new HelloWorld.RouteKey("GET", "/"), this::handleGetRoot,
 			new HelloWorld.RouteKey("GET", "/hello"), this::handleGetHello
@@ -60,7 +60,7 @@ public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
 				Optional.ofNullable(requestEvent.getQueryStringParameters())
 						.map(this::getUserName)
 						.map(", %s"::formatted)
-						.orElse(" from lambda! Use the query string parameter 'name' to specify your name")
+						.orElse(" from lambda")
 		)));
 	}
 
