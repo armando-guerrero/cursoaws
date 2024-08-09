@@ -60,7 +60,7 @@ public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
 				Optional.ofNullable(requestEvent.getQueryStringParameters())
 						.map(this::getUserName)
 						.map(", %s"::formatted)
-						.orElse(" from lambda")
+						.orElse(" from Lambda")
 		)));
 	}
 
