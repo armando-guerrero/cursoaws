@@ -39,7 +39,7 @@ public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
 	private static final int SC_OK = 200;
 	private static final int SC_NOT_FOUND = 404;
     private final ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
-	private final Map<String, String> responseHeaders = Map.of("Content-Type", "application/json", "statusCode", "200");
+	private final Map<String, String> responseHeaders = Map.of("Content-Type", "application/json");
 	private final Map<HelloWorld.RouteKey, Function<APIGatewayV2HTTPEvent, APIGatewayV2HTTPResponse>> routeHandlers = Map.of(
 			new HelloWorld.RouteKey("GET", "/"), this::handleGetRoot,
 			new HelloWorld.RouteKey("GET", "/hello"), this::handleGetHello
@@ -65,7 +65,7 @@ public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
 	}
 
 	private APIGatewayV2HTTPResponse notFoundResponse(APIGatewayV2HTTPEvent requestEvent) {
-		return buildResponse(SC_NOT_FOUND, HelloWorld.Body.error("The resource with method %s and path %s is not found".formatted(
+		return buildResponse(SC_NOT_FOUND, HelloWorld.Body.statusCode("400".formatted(
 				getMethod(requestEvent),
 				getPath(requestEvent)
 		)));
@@ -99,13 +99,13 @@ public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
 	private record RouteKey(String method, String path) {
 	}
 
-	private record Body(String message, String error) {
+	private record Body(String message, String statusCode) {
 		static Object ok(String message) {
-			return new HelloWorld.Body(message, null);
+			return new HelloWorld.Body(message,"200");
 		}
 
-		static Object error(String error) {
-			return new HelloWorld.Body(null, error);
+		static Object statusCode(String statusCode) {
+			return new HelloWorld.Body(null, statusCode);
 		}
 	}
 
