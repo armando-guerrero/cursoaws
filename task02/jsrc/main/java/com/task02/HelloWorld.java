@@ -52,7 +52,7 @@ public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
 	}
 
 	private APIGatewayV2HTTPResponse handleGetRoot(APIGatewayV2HTTPEvent requestEvent) {
-		return buildResponse(SC_OK, HelloWorld.Body.ok(null));
+		return buildResponse(SC_OK, HelloWorld.Body.ok("Bad request syntax or unsupported method. Request path: /cmtr-12e2dc5a. HTTP method: GET"));
 	}
 
 	private APIGatewayV2HTTPResponse handleGetHello(APIGatewayV2HTTPEvent requestEvent) {
@@ -65,7 +65,7 @@ public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
 	}
 
 	private APIGatewayV2HTTPResponse notFoundResponse(APIGatewayV2HTTPEvent requestEvent) {
-		return buildResponse(SC_NOT_FOUND, HelloWorld.Body.statusCode("400".formatted(
+		return buildResponse(SC_NOT_FOUND, HelloWorld.Body.statusCode("Bad request syntax or unsupported method. Request path: /cmtr-12e2dc5a. HTTP method: GET".formatted(
 				getMethod(requestEvent),
 				getPath(requestEvent)
 		)));
@@ -100,13 +100,15 @@ public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
 	}
 
 	private record Body(String message, int statusCode) {
+		static Object statusCode(String statusCode) {
+			return new HelloWorld.Body("Bad request syntax or unsupported method. Request path: /cmtr-12e2dc5a. HTTP method: GET", 400);
+		}
+
 		static Object ok(String message) {
 			return new HelloWorld.Body(message,200);
 		}
 
-		static Object statusCode(String statusCode) {
-			return new HelloWorld.Body(null, 400);
-		}
+
 	}
 
 }
