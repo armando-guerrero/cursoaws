@@ -52,7 +52,7 @@ public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
 	}
 
 	private APIGatewayV2HTTPResponse handleGetRoot(APIGatewayV2HTTPEvent requestEvent) {
-		return buildResponse(SC_OK, HelloWorld.Body.ok("Use the path /hello to get greetings message"));
+		return buildResponse(SC_OK, HelloWorld.Body.ok(null));
 	}
 
 	private APIGatewayV2HTTPResponse handleGetHello(APIGatewayV2HTTPEvent requestEvent) {
@@ -99,13 +99,13 @@ public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
 	private record RouteKey(String method, String path) {
 	}
 
-	private record Body(String message, String statusCode) {
+	private record Body(String message, int statusCode) {
 		static Object ok(String message) {
-			return new HelloWorld.Body(message,"200");
+			return new HelloWorld.Body(message,200);
 		}
 
 		static Object statusCode(String statusCode) {
-			return new HelloWorld.Body(null, statusCode);
+			return new HelloWorld.Body(null, 400);
 		}
 	}
 
