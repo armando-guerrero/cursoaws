@@ -25,7 +25,9 @@
     "resource_type": "iam_policy"
   },
   "sqs_handler-role": {
-    "predefined_policies": [],
+    "predefined_policies": [
+      "AWSLambdaSQSQueueExecutionRole"
+    ],
     "principal_service": "lambda",
     "custom_policies": [
       "lambda-basic-execution"
@@ -44,21 +46,17 @@
     "redrive_policy": {},
     "content_based_deduplication": false
   },
-  "sqs_handler": {
-    "resource_type": "lambda",
-    "lambda_name": "sqs_handler",
-    "role_name": "sqs_handler-role",
-    "handler": "com.task04.SqsHandler::handleRequest",
-    "runtime": "java11",
-    "memory_size": 512,
-    "timeout": 300,
-    "environment_variables": {},
-    "event_sources": [
-      {
-        "event_source_arn": "arn:aws:sqs:us-east-1:123456789012:async_queue",
-        "batch_size": 10,
-        "enabled": true
-      }
-    ]
+  "sns_handler-role": {
+    "predefined_policies": [],
+    "principal_service": "lambda",
+    "custom_policies": [
+      "lambda-basic-execution"
+    ],
+    "resource_type": "iam_role"
+  },
+  "lambda_topic": {
+    "resource_type": "sns_topic",
+    "region": "eu-central-1",
+    "event_sources": []
   }
 }
