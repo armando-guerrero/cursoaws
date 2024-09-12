@@ -60,8 +60,8 @@ public class ApiHandler  implements RequestHandler<APIGatewayV2HTTPEvent, APIGat
 			String createdAt = Instant.now().toString();
 			System.out.println("Request body: " + requestBody.get("content").toString());
 			Item item = new Item()
-					.withPrimaryKey("principalId", requestBody.get("principalId"))
-					.withString("Id", id)
+					.withPrimaryKey("id", id.toString())
+					.withString("principalId", requestBody.get("principalId").toString())
 					.withString("createdAt", createdAt)
 					.withString("body", requestBody.get("content").toString());
 			System.out.println("Ready to write un table ....");
