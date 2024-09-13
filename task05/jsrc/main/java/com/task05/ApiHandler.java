@@ -22,6 +22,7 @@ import com.syndicate.deployment.model.lambda.url.AuthType;
 import com.syndicate.deployment.model.lambda.url.InvokeMode;
 
 import java.time.Instant;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -56,12 +57,13 @@ public class ApiHandler implements RequestHandler<Object, Map<String, Object>> {
 			Map<String, Object> requestBody = objectMapper.convertValue(request, new TypeReference<Map<String, Object>>() {});
 			requestBody.forEach((key, value) -> System.out.println("[Key] : " + key + " [Value] : " + value));
 			String id = UUID.randomUUID().toString();
-			String createdAt = Instant.now().toString();
+			Instant createdAt = Instant.now();
+			String isoDateTime = DateTimeFormatter.ISO_INSTANT.format(createdAt);
 
 			Item item = new Item()
 					.withPrimaryKey("id", id)
-					.withString("principalId", requestBody.get("principalId").toString())
-					.withString("createdAt", createdAt)
+					.withInt("principalId", (Integer) requestBody.get("principalId"))
+					.withString("createdAt", isoDateTime)
 					.withMap("body", (Map<String, String>) requestBody.get("content"));
 
 			table.putItem(item);
