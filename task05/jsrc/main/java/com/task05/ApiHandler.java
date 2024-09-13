@@ -22,6 +22,7 @@ import com.syndicate.deployment.model.lambda.url.AuthType;
 import com.syndicate.deployment.model.lambda.url.InvokeMode;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,7 +58,8 @@ public class ApiHandler implements RequestHandler<Object, Map<String, Object>> {
 			Map<String, Object> requestBody = objectMapper.convertValue(request, new TypeReference<Map<String, Object>>() {});
 			requestBody.forEach((key, value) -> System.out.println("[Key] : " + key + " [Value] : " + value));
 			String id = UUID.randomUUID().toString();
-			Instant createdAt = Instant.now();
+			//Instant createdAt = Instant.now();
+			LocalDate createdAt = LocalDate.now();
 			String isoDateTime = DateTimeFormatter.ISO_INSTANT.format(createdAt);
 
 			Item item = new Item()
