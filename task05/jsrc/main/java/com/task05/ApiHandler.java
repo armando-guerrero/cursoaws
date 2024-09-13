@@ -7,7 +7,6 @@ import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -20,9 +19,8 @@ import com.syndicate.deployment.model.DeploymentRuntime;
 import com.syndicate.deployment.model.RetentionSetting;
 import com.syndicate.deployment.model.lambda.url.AuthType;
 import com.syndicate.deployment.model.lambda.url.InvokeMode;
-
-import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
@@ -58,9 +56,9 @@ public class ApiHandler implements RequestHandler<Object, Map<String, Object>> {
 			Map<String, Object> requestBody = objectMapper.convertValue(request, new TypeReference<Map<String, Object>>() {});
 			requestBody.forEach((key, value) -> System.out.println("[Key] : " + key + " [Value] : " + value));
 			String id = UUID.randomUUID().toString();
-			//Instant createdAt = Instant.now();
 			LocalDate createdAt = LocalDate.now();
-			String isoDateTime = DateTimeFormatter.ISO_INSTANT.format(createdAt);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+			String isoDateTime = createdAt.atStartOfDay().atOffset(ZoneOffset.UTC).format(formatter);
 
 			Item item = new Item()
 					.withPrimaryKey("id", id)
