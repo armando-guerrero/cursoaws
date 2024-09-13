@@ -54,7 +54,7 @@
     },
     "minimum_compression_size": 0
   },
-  "${target_table}": {
+  "Events": {
     "resource_type": "dynamodb_table",
     "hash_key_name": "id",
     "hash_key_type": "S",
