@@ -1,0 +1,77 @@
+{
+  "lambda-basic-execution": {
+    "policy_content": {
+      "Statement": [
+        {
+          "Action": [
+            "logs:CreateLogGroup",
+            "logs:CreateLogStream",
+            "logs:PutLogEvents",
+            "dynamodb:PutItem",
+            "dynamodb:UpdateItem",
+            "dynamodb:GetItem",
+            "dynamodb:Query",
+            "dynamodb:Scan",
+            "dynamodb:Batch*",
+            "dynamodb:DeleteItem",
+            "ssm:PutParameter",
+            "ssm:GetParameter",
+            "kms:Decrypt"
+          ],
+          "Effect": "Allow",
+          "Resource": "*"
+        }
+      ],
+      "Version": "2012-10-17"
+    },
+    "resource_type": "iam_policy"
+  },
+  "DynamoDBStreamPolicy": {
+    "resource_type": "iam_policy",
+    "policy_content": {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Action": [
+            "dynamodb:GetRecords",
+            "dynamodb:GetShardIterator",
+            "dynamodb:DescribeStream",
+            "dynamodb:ListStreams"
+          ],
+          "Resource": "*",
+          "Effect": "Allow"
+        }
+      ]
+    }
+  },
+  "audit_producer-role": {
+    "predefined_policies": [],
+    "principal_service": "lambda",
+    "custom_policies": [
+      "DynamoDBStreamPolicy",
+      "lambda-basic-execution"
+    ],
+    "resource_type": "iam_role"
+  },
+
+  "Configuration": {
+    "resource_type": "dynamodb_table",
+    "hash_key_name": "id",
+    "hash_key_type": "S",
+    "read_capacity": 1,
+    "write_capacity": 1,
+    "global_indexes": [],
+    "autoscaling": []
+  },
+  "Audit": {
+    "resource_type": "dynamodb_table",
+    "hash_key_name": "id",
+    "hash_key_type": "S",
+    "sort_key_name": "itemKey",
+    "sort_key_type": "S",
+    "read_capacity": 1,
+    "write_capacity": 1,
+    "global_indexes": [],
+    "autoscaling": []
+  }
+}
