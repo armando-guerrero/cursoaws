@@ -22,6 +22,7 @@ import com.syndicate.deployment.model.RetentionSetting;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -55,6 +56,12 @@ public class AuditProducer implements RequestHandler<DynamodbEvent, String> {
 			String eventName = record.getEventName();
 			//System.out.println("Tabla: " + auditTable.getTableName());
 			Map<String, AttributeValue> newImage = record.getDynamodb().getNewImage();
+			String itemKeyValue = newImage.get("key").getS();
+			Map<String, Object> newImageMap = new HashMap<String, Object>();
+			newImageMap.put("key", itemKeyValue);
+			newImageMap.put("value", Integer.valueOf(newImage.get("value").getN()));
+
+
 			Map<String, AttributeValue> oldImage = record.getDynamodb().getOldImage();
 			LocalDate createdAt = LocalDate.now();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
@@ -62,13 +69,13 @@ public class AuditProducer implements RequestHandler<DynamodbEvent, String> {
 			try {
 				Item auditItem = new Item()
 						.withPrimaryKey("id", UUID.randomUUID().toString())
-						.withString("itemKey", newImage.get("key").toString())
+						.withString("itemKey", itemKeyValue)
 						.withString("modificationTime", isoDateTime);
 
 				if ("INSERT".equals(eventName)) {
 					//System.out.println("Insertar en tabla ... ");
 					//newImage.forEach((key, value) -> System.out.println("[Key] : " + key + " [Value] : " + value));
-					auditItem.withString("newValue", newImage.toString());
+					auditItem.with("newValue", newImageMap);
 					//System.out.println("salio Insertar en tabla ... ");
 				} else if ("MODIFY".equals(eventName)) {
 					//System.out.println("Modificar en tabla ... ENTRO");
