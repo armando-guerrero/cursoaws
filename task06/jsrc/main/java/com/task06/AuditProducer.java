@@ -82,8 +82,8 @@ public class AuditProducer implements RequestHandler<DynamodbEvent, String> {
 					//newImage.forEach((key, value) -> System.out.println("[Key] : " + key + " [Value] : " + value));
 					//oldImage.forEach((key, value) -> System.out.println("[Key] : " + key + " [Value] : " + value));
 					auditItem.withString("updatedAttribute", "value")
-							.withString("oldValue", oldImage.get("value").toString())
-							.withString("newValue", newImage.get("value").toString());
+							.withInt("oldValue", Integer.valueOf(oldImage.get("value").getN()))
+							.withInt("newValue", Integer.valueOf(newImage.get("value").getN()));
 					//System.out.println("Modificar en tabla ... SALIO");
 				}
 
