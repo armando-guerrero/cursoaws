@@ -15,6 +15,7 @@ import com.syndicate.deployment.model.RetentionSetting;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -48,6 +49,7 @@ public class UuidGenerator implements RequestHandler<Object, String> {
 
 	@Override
 	public String handleRequest(Object request, Context context) {
+		System.out.println("inicio la ejecujcion......");
 		List<String> uuids = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
 			uuids.add(UUID.randomUUID().toString());
@@ -56,11 +58,10 @@ public class UuidGenerator implements RequestHandler<Object, String> {
 		Map<String, Object> result = new HashMap<>();
 		result.put("ids", uuids);
 
-		LocalDate createdAt = LocalDate.now();
+		LocalDateTime createdAt = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
-		String fileName = createdAt.atStartOfDay().atOffset(ZoneOffset.UTC).format(formatter);
+		String fileName = createdAt.atZone(ZoneOffset.UTC).format(formatter);
 		System.out.println("File name: " + fileName);
-		System.out.println("bucket Name: " + bucketName);
 		try {
 			String jsonContent = objectMapper.writeValueAsString(result);
 			s3Client.putObject(bucketName, fileName, jsonContent);
