@@ -31,14 +31,14 @@ import java.util.UUID;
 		layers = {"weather-layer"},
 		isPublishVersion = false,
 		logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED,
-		runtime = DeploymentRuntime.JAVA11,
+		runtime = DeploymentRuntime.JAVA17,
 		architecture = Architecture.ARM64,
 		tracingMode = TracingMode.Active
 )
 @LambdaLayer(
 		layerName = "weather-layer",
 		libraries = {"lib/Open-Meteo-1.0-SNAPSHOT.jar"},
-		runtime = DeploymentRuntime.JAVA11,
+		runtime = DeploymentRuntime.JAVA17,
 		architectures = {Architecture.ARM64},
 		artifactExtension = ArtifactExtension.ZIP
 )
