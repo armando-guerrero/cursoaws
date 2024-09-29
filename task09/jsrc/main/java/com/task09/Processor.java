@@ -101,6 +101,7 @@ public class Processor implements RequestHandler<Object, String> {
 					.withMap("forecast", weatherMap);
 
 			table.putItem(item);
+			System.out.println("Weather data stored successfully.");
 			return "Weather data stored successfully.";
 		} catch (Exception e) {
 			context.getLogger().log("Error: " + e.getMessage());
