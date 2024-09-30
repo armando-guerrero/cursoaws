@@ -58,16 +58,27 @@ public class Processor implements RequestHandler<Object, String> {
 			String weatherData = weatherClient.getWeatherForecast();
 			Map<String, Object> weatherMap = objectMapper.readValue(weatherData, HashMap.class);
 
+			Map<String, Object> hourly = (Map<String, Object>) weatherMap.get("hourly");
+			hourly.remove("relative_humidity_2m");
+			hourly.remove("wind_speed_10m");
+
+			Map<String, Object> hourlyUnits = (Map<String, Object>) weatherMap.get("hourly");
+			hourlyUnits.remove("relative_humidity_2m");
+			hourlyUnits.remove("wind_speed_10m");
+
+
 			Map<String, Object> forecast = new HashMap<>();
 			forecast.put("elevation", weatherMap.get("elevation"));
 			forecast.put("generationtime_ms", weatherMap.get("generationtime_ms"));
-			forecast.put("hourly", weatherMap.get("hourly"));
-			forecast.put("hourly_units", weatherMap.get("hourly_units"));
+			forecast.put("hourly",hourly);
+			forecast.put("hourly_units", hourlyUnits);
 			forecast.put("latitude", weatherMap.get("latitude"));
 			forecast.put("longitude", weatherMap.get("longitude"));
 			forecast.put("timezone", weatherMap.get("timezone"));
 			forecast.put("timezone_abbreviation", weatherMap.get("timezone_abbreviation"));
 			forecast.put("utc_offset_seconds", weatherMap.get("utc_offset_seconds"));
+
+			forecast.forEach((key, value) -> System.out.println("[Key] : " + key + " [Value] : " + value));
 
 			Item item = new Item()
 					.withPrimaryKey("id", UUID.randomUUID().toString())
