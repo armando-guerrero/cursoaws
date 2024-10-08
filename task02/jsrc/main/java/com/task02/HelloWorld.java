@@ -27,6 +27,7 @@ import java.util.function.Function;
 	isPublishVersion = false,
 	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED,
 	runtime = DeploymentRuntime.JAVA17,
+	aliasName = "${lambdas_alias_name}",
 	architecture = Architecture.ARM64
 )
 
