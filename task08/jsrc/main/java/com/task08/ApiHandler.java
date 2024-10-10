@@ -19,6 +19,7 @@ import open_mateo_sdk.WeatherClient;
 	layers = {"weather-layer"},
 	isPublishVersion = false,
 	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED,
+	aliasName = "${lambdas_alias_name}",
 	runtime = DeploymentRuntime.JAVA11,
 	architecture = Architecture.ARM64
 )
