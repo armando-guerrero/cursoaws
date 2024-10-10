@@ -28,6 +28,7 @@ import java.util.UUID;
 		lambdaName = "uuid_generator",
 		roleName = "uuid_generator-role",
 		isPublishVersion = false,
+		aliasName = "${lambdas_alias_name}",
 		logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
 @RuleEventSource(
