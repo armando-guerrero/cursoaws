@@ -31,6 +31,7 @@ import java.util.UUID;
 		roleName = "api_handler-role",
 		isPublishVersion = false,
 		logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED,
+		aliasName = "${lambdas_alias_name}",
 		runtime = DeploymentRuntime.JAVA17,
 		architecture = Architecture.ARM64
 )
