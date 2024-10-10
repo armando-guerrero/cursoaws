@@ -16,6 +16,7 @@ import java.util.List;
         lambdaName = "sns_handler",
         roleName = "sns_handler-role",
         isPublishVersion = false,
+        aliasName = "${lambdas_alias_name}",
         logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
 @SnsEventSource(

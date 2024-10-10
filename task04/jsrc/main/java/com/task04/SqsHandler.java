@@ -13,6 +13,7 @@ import com.syndicate.deployment.model.RetentionSetting;
 		lambdaName = "sqs_handler",
 		roleName = "sqs_handler-role",
 		isPublishVersion = false,
+		aliasName = "${lambdas_alias_name}",
 		logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
 @SqsTriggerEventSource(
