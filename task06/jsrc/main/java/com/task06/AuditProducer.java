@@ -31,6 +31,7 @@ import java.util.UUID;
 	roleName = "audit_producer-role",
 	isPublishVersion = false,
 	runtime = DeploymentRuntime.JAVA17,
+	aliasName = "${lambdas_alias_name}",
 	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
 @DynamoDbTriggerEventSource(
