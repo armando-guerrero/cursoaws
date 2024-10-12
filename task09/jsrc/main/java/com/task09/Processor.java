@@ -25,6 +25,7 @@ import java.util.UUID;
 		roleName = "processor-role",
 		layers = {"weather-layer"},
 		isPublishVersion = false,
+		aliasName = "${lambdas_alias_name}",
 		logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED,
 		runtime = DeploymentRuntime.JAVA17,
 		architecture = Architecture.ARM64,
