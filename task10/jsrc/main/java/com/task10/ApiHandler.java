@@ -63,6 +63,13 @@ public class ApiHandler implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
 		String path = requestEvent.getRequestContext().getHttp().getPath();
 		String method = requestEvent.getRequestContext().getHttp().getMethod();
 
+		context.getLogger().log("Path: " + path);
+		context.getLogger().log("Method: " + method);
+		context.getLogger().log("Tables Table: " + System.getenv("tables_table"));
+		context.getLogger().log("Reservations Table: " + System.getenv("reservations_table"));
+		context.getLogger().log("Cognito ID: " + System.getenv("COGNITO_ID"));
+		context.getLogger().log("Client ID: " + System.getenv("CLIENT_ID"));
+
 		try {
 			switch (path) {
 				case "/signup":
