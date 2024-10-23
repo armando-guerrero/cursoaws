@@ -19,18 +19,18 @@
     } ],
     "event_sources" : [ ],
     "env_variables" : {
-      "reservations_table" : "Reservations",
+      "reservations_table" : "${reservations_table}",
       "CLIENT_ID" : {
+        "parameter" : "client_id",
         "resource_name" : "${booking_userpool}",
-        "resource_type" : "cognito_idp",
-        "parameter" : "client_id"
+        "resource_type" : "cognito_idp"
       },
-      "tables_table" : "Tables",
-      "booking_userpool" : "simple-booking-userpool",
+      "tables_table" : "${tables_table}",
+      "booking_userpool" : "${booking_userpool}",
       "COGNITO_ID" : {
+        "parameter" : "id",
         "resource_name" : "${booking_userpool}",
-        "resource_type" : "cognito_idp",
-        "parameter" : "id"
+        "resource_type" : "cognito_idp"
       },
       "REGION" : "${region}"
     },
