@@ -31,7 +31,7 @@ import static com.syndicate.deployment.model.environment.ValueTransformer.USER_P
 @LambdaHandler(
     lambdaName = "api_handler",
 	roleName = "api_handler-role",
-	isPublishVersion = false,
+	isPublishVersion = true,
 	aliasName = "${lambdas_alias_name}",
 	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
@@ -114,19 +114,7 @@ public class ApiHandler implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
     }
 
 	private APIGatewayV2HTTPResponse handleSignup(APIGatewayV2HTTPEvent requestEvent) throws Exception {
-		/*Map<String, String> requestBody = objectMapper.readValue(requestEvent.getBody(), Map.class);
-		String email = requestBody.get("email");
-		String password = requestBody.get("password");
 
-		AdminCreateUserRequest createUserRequest = AdminCreateUserRequest.builder()
-				.userPoolId(System.getenv("COGNITO_ID"))
-				.username(email)
-				.temporaryPassword(password)
-				.messageAction("SUPPRESS")
-				.build();
-		cognitoClient.adminCreateUser(createUserRequest);
-
-		return buildResponse(200, "Sign-up process is successful");*/
 		Map<String, String> requestBody = objectMapper.readValue(requestEvent.getBody(), Map.class);
 		String firstName = requestBody.get("firstName");
 		String lastName = requestBody.get("lastName");
