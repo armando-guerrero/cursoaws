@@ -43,13 +43,13 @@
   "${booking_userpool}": {
     "resource_type": "cognito_idp",
     "password_policy": {
-      "minimum_length": 8,
+      "minimum_length": 12,
       "require_uppercase": true,
       "require_symbols": true,
       "require_lowercase": true,
       "require_numbers": true
     },
-    "auto_verified_attributes": ["email"],
+    "auto_verified_attributes": [],
     "sms_configuration": {},
     "username_attributes": [],
     "custom_attributes": [],
@@ -70,7 +70,7 @@
     "dependencies": [],
     "resources": {
       "/signin": {
-        "enable_cors": true,
+        "enable_cors": false,
         "POST": {
           "authorization_type": "NONE",
           "integration_type": "lambda",
@@ -81,11 +81,11 @@
           "responses": [],
           "integration_responses": [],
           "default_error_pattern": true,
-          "enable_proxy": true
+            "enable_proxy": true
         }
       },
       "/signup": {
-        "enable_cors": true,
+        "enable_cors": false,
         "POST": {
           "authorization_type": "NONE",
           "integration_type": "lambda",
@@ -100,7 +100,7 @@
         }
       },
       "/tables": {
-        "enable_cors": true,
+        "enable_cors": false,
         "GET": {
           "authorization_type": "authorizer",
           "integration_type": "lambda",
@@ -127,7 +127,7 @@
         }
       },
       "/tables/{tableId}": {
-        "enable_cors": true,
+        "enable_cors": false,
         "GET": {
           "authorization_type": "authorizer",
           "integration_type": "lambda",
@@ -142,7 +142,7 @@
         }
       },
       "/reservations": {
-        "enable_cors": true,
+        "enable_cors": false,
         "GET": {
           "authorization_type": "authorizer",
           "integration_type": "lambda",
@@ -169,6 +169,7 @@
         }
       }
     },
+    "minimum_compression_size": 0,
     "authorizers": {
       "authorizer": {
         "type": "COGNITO_USER_POOLS",
