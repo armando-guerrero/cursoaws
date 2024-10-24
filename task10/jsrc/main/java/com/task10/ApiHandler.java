@@ -41,8 +41,7 @@ import static com.syndicate.deployment.model.environment.ValueTransformer.USER_P
 		@EnvironmentVariable(key = "COGNITO_ID", value = "${booking_userpool}", valueTransformer = USER_POOL_NAME_TO_USER_POOL_ID),
 		@EnvironmentVariable(key = "CLIENT_ID", value = "${booking_userpool}", valueTransformer = USER_POOL_NAME_TO_CLIENT_ID),
 		@EnvironmentVariable(key = "tables_table", value = "${tables_table}"),
-		@EnvironmentVariable(key = "reservations_table", value = "${reservations_table}"),
-		@EnvironmentVariable(key = "booking_userpool", value = "${booking_userpool}")
+		@EnvironmentVariable(key = "reservations_table", value = "${reservations_table}")
 	}
 )
 @LambdaUrlConfig(
