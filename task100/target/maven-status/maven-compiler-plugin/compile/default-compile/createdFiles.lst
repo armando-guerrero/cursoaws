@@ -1,0 +1,14 @@
+com\task10\handler\GetTablesHandler.class
+com\task10\ApiHandler.class
+com\task10\handler\PostSignUpHandler.class
+com\task10\handler\CognitoSupport.class
+com\task10\handler\PostTablesHandler.class
+com\task10\dto\SignIn.class
+com\task10\dto\SignUp.class
+com\task10\handler\PostSignInHandler.class
+com\task10\dto\RouteKey.class
+com\task10\handler\GetSpecificTableHandler.class
+com\task10\handler\PostReservationsHandler.class
+com\task10\handler\GetRootHandler.class
+com\task10\handler\RouteNotImplementedHandler.class
+com\task10\handler\GetReservationsHandler.class
