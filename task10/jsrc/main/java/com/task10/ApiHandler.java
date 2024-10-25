@@ -27,6 +27,7 @@ import static com.syndicate.deployment.model.environment.ValueTransformer.USER_P
 		roleName = "api_handler-role",
 		runtime = DeploymentRuntime.JAVA17,
 		isPublishVersion = false,
+		aliasName = "${lambdas_alias_name}",
 		logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
 
