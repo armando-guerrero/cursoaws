@@ -1,0 +1,14 @@
+com\task11\handler\PostSignInHandler.class
+com\task11\handler\PostSignUpHandler.class
+com\task11\handler\GetReservationsHandler.class
+com\task11\handler\GetRootHandler.class
+com\task11\dto\RouteKey.class
+com\task11\handler\PostReservationsHandler.class
+com\task11\ApiHandler.class
+com\task11\handler\GetSpecificTableHandler.class
+com\task11\dto\SignIn.class
+com\task11\dto\SignUp.class
+com\task11\handler\CognitoSupport.class
+com\task11\handler\PostTablesHandler.class
+com\task11\handler\RouteNotImplementedHandler.class
+com\task11\handler\GetTablesHandler.class
