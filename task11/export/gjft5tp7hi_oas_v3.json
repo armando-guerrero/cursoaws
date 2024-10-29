@@ -145,8 +145,11 @@
         }
       }
     },
+
     "/tables": {
       "get": {
+        "summary": "Table process, consult all tables",
+        "description": "Method to consult all tables registered in the system, Each table includes details such as its ID, number, capacity, whether it's in the VIP hall, and optionally, the minimum order required to book it",
         "responses": {
           "200": {
             "description": "200 response",
@@ -277,6 +280,28 @@
     },
     "/signin": {
       "post": {
+        "summary": "Sign in process, a new user enter at the system",
+        "description": "Method to sign in a user, an user can enter at the system",
+        "request body" :{
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "pattern": "^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\\$%\\^*\\-_]).{12,}$"
+                  }
+                },
+                "required": ["firstName", "lastName", "email", "password"]
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "200 response",
