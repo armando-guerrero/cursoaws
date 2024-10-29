@@ -345,7 +345,7 @@
       "post": {
         "summary": "Sign in process, a new user enter at the system",
         "description": "Method to sign in a user, an user can enter at the system",
-        "request body" :{
+        "requestBody" :{
           "content": {
             "application/json": {
               "schema": {
