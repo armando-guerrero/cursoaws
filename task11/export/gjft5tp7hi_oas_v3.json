@@ -492,7 +492,7 @@
                   },
                   "password": {
                     "type": "string",
-                    "pattern": "^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\$%\^*\-_]).{12,}$"
+                    "pattern": "^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\\$%\\^*\\-_]).{12,}$"
                   }
                 },
                 "required": ["firstName", "lastName", "email", "password"]
