@@ -190,6 +190,32 @@
         }
       },
       "post": {
+        "summary": "Table process, register/create  a new table",
+        "description": "Method to register a new table in the system, Each table includes details such as its ID, number, capacity, whether it's in the VIP hall, and optionally, the minimum order required to book it",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "number": {
+                    "type": "integer"
+                  },
+                  "capacity": {
+                    "type": "integer"
+                  },
+                  "vip": {
+                    "type": "boolean"
+                  },
+                  "minOrder": {
+                    "type": "number"
+                  }
+                },
+                "required": ["number", "capacity", "vip"]
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "200 response",
@@ -387,6 +413,8 @@
     },
     "/tables/{tableId}": {
       "get": {
+        "summary": "Table process, consult a specific table",
+        "description": "Method to consult a specific table registered in the system, Each table includes details such as its ID, number, capacity, whether it's in the VIP hall, and optionally, the minimum order required to book it",
         "parameters": [
           {
             "name": "tableId",
