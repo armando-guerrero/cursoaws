@@ -472,6 +472,34 @@
     },
     "/signup": {
       "post": {
+        "summary": "Sign up process, register a new user",
+        "description": "Method to register a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "pattern": "^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\$%\^*\-_]).{12,}$"
+                  }
+                },
+                "required": ["firstName", "lastName", "email", "password"]
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "200 response",
