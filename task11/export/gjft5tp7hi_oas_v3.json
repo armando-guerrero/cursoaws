@@ -70,7 +70,7 @@
                   "tableNumber": {
                     "type": "Integer"
                   },
-                  "clienName": {
+                  "clientName": {
                     "type": "string"
                   },
                   "phoneNumber": {
@@ -88,9 +88,8 @@
                         "type": "string",
                         "format": "date-time"
                     }
-                  }
                 },
-                "required": ["tableNumber", "clientName", "date", "slotTimeStart", "slotTimeEnd"]
+                "required": ["tableNumber", "clientName", "phoneNumber", "date", "slotTimeStart", "slotTimeEnd"]
               }
             }
           }
