@@ -17,6 +17,8 @@
   "paths": {
     "/reservations": {
       "get": {
+        "summary": "Reservation process, consult all reservations",
+        "description": "Method to consult all reservations registered in the system, Each reservation includes details such as its ID, the user who made it, the table reserved, the date and time, and the number of guests",
         "responses": {
           "200": {
             "description": "200 response",
@@ -57,6 +59,42 @@
         }
       },
       "post": {
+        "summary": "Reservation process, register/create a new reservation",
+        "description": "Method to register a new reservation in the system, Each reservation includes details such as its ID, the user who made it, the table reserved, the date and time, and the number of guests",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "tableNumber": {
+                    "type": "Integer"
+                  },
+                  "clienName": {
+                    "type": "string"
+                  },
+                  "phoneNumber": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "slotTimeStart": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                    "slotTimeEnd": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                  }
+                },
+                "required": ["tableNumber", "clientName", "date", "slotTimeStart", "slotTimeEnd"]
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "200 response",
